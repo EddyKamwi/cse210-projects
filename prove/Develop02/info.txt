@@ -1,0 +1,38 @@
+"Welcome to the Journal Program!"
+"Please select one of the following choice: "
+    1. Write
+    2. Display
+    3. Load
+    4. Save
+    5. Quit
+
+"What would you like to do? "
+
+Write
+    chooses a random string to display to the user which is a 
+    question and then gets input.
+    >symbol to receive input and after input takes them back to the main menu
+
+ Display
+    displays date, prompt question and the answer to the prompt
+    
+        "Date {date} - Prompt: {prompt}?"
+        "{prompt_ans}"
+
+Load
+        "What is the filename? "
+        ">"
+Save
+    save will ask for the file name 
+        "What is the filename?"
+        ">"
+Quit
+    exit with no output
+
+
+Who was the most interesting person I interacted with today?
+What was the best part of my day?
+How did I see the hand of the Lord in my life today?
+What was the strongest emotion I felt today?
+If I had one thing I could do over today, what would it be?
+
