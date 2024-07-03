@@ -1,27 +1,32 @@
 using System;
-
-Reference reference = new Reference("1Nephi", 3, 7);
-string scripText = "And it came to pass that I, Nephi, said unto my father: father I will go and do the things which the Lord hath commanded, for I know that the Lord giveth no commandments unto the children of men, save he shall prepare a way for them that they may accomplish the thing which he commandeth them.";
-Word word = new Word(scripText);
-
-Scripture scripture = new Scripture(reference, word.GetDisplayText());
-
-//loop to continue hidding words
-while (true)
+public class Program
 {
-    //clear screen
-    Console.Clear();
+    static void Main(string[] args)
+    {
+        Reference reference = new Reference("1Nephi", 3, 7);
+        string scripText = "And it came to pass that I, Nephi, said unto my father: father I will go and do the things which the Lord hath commanded, for I know that the Lord giveth no commandments unto the children of men, save he shall prepare a way for them that they may accomplish the thing which he commandeth them.";
+        Word word = new Word(scripText);
 
-    // display scripture reference and text
-    Console.WriteLine(scripture.GetDisplayText());
+        Scripture scripture = new Scripture(reference, word.GetDisplayText());
 
-    //ask user for input and store it as ans
-    Console.Write("\nPrompt the user to press the enter key or type quit. \n >");
-    string ans = Console.ReadLine().ToLower();
+        //loop to continue hidding words
+        while (true)
+        {
+            //clear screen
+            Console.Clear();
 
-    //check the input and the words if there completely hidden
-    if (ans == "quit" || scripture.IsCompletelyHidden()) { break; }
+            // display scripture reference and text
+            Console.WriteLine(scripture.GetDisplayText());
 
-    //hide three numbers
-    scripture.HideRandomWords(3);
+            //ask user for input and store it as ans
+            Console.Write("\nPrompt the user to press the enter key or type quit. \n >");
+            string ans = Console.ReadLine().ToLower();
+
+            //check the input and the words if there completely hidden
+            if (ans == "quit" || scripture.IsCompletelyHidden()) { break; }
+
+            //hide three numbers
+            scripture.HideRandomWords(3);
+        }
+    }
 }
