@@ -1,8 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 
-public class Shape
+public abstract class Shape
 {
     private string _color;
+    public Shape(string color)
+    {
+        _color = color;
+    }
     public string GetColor()
     {
         return _color;
@@ -11,9 +15,6 @@ public class Shape
     {
         _color = color;
     }
-    public virtual double GetArea(double l=0, double w=0)
-    {
-        return l*w;
-    }
+    public abstract double GetArea();
 
 }
