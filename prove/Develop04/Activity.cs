@@ -2,7 +2,7 @@ public class Activity
 {
     private string _name;
     private string _description;
-    private int _duration;
+    protected int _duration;
 
     public Activity(string name, string description, int duration)
     {
@@ -12,11 +12,18 @@ public class Activity
     }
     public void DisplayStartingMessage()
     {
-
+        Console.WriteLine(
+            $"Welcome to the {_name}\n\n"+
+            $"{_description}\n\n"
+        );
+    }
+    public void SetDuration(int duration)
+    {
+        _duration = duration;
     }
     public void DisplayEndingMessage()
     {
-
+        Console.WriteLine($"\n\nYou have completed another {_duration} seconds in the {_name}");
     }
     public void ShowLoading(int seconds)
     {
@@ -28,7 +35,7 @@ public class Activity
             for (int i = 0; i < 3; i++)
             {
                 Console.Write(". ");
-                Thread.Sleep(1500);
+                Thread.Sleep(750);
             }
             Console.Write("\b\b\b\b\b\b      \b\b\b\b\b\b");
 
