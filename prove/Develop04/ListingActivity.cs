@@ -17,12 +17,7 @@ public class ListingActivity : Activity
 
         //display question
         this.GetRandomPrompt();
-        for (int j = 5; j >= 0; j--)
-        {
-            Console.Write(j);
-            Thread.Sleep(1000);
-            Console.Write("\b \b \b");
-        }
+        base.ShowCountDown(5);
 
         //get multiple user
         this.GetListFromUser();

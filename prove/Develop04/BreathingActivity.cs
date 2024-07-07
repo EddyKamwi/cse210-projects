@@ -21,20 +21,10 @@ class BreathingActivity : Activity
         while (currentTime < endCount)
         {
             Console.Write("\n\nBreathe in ...");
-            for (int i = 3; i >= 0; i--)
-            {
-                Console.Write(i);
-                Thread.Sleep(750);
-                Console.Write("\b \b \b");
-            }
+            base.ShowCountDown(3);
+            
             Console.Write("\nBreathe out ...");
-
-            for (int i = 3; i >= 0; i--)
-            {
-                Console.Write(i);
-                Thread.Sleep(750);
-                Console.Write("\b \b \b");
-            }
+            base.ShowCountDown(3);
             currentTime = DateTime.Now;
         }
         Console.WriteLine("\nWell done!!\n");

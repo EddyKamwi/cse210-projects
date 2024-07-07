@@ -25,12 +25,7 @@ class ReflectingActivity : Activity
 
         Console.Write("Now ponder on each of the following questions as they related to this experience.\n" +
                         "You may begin in: ");
-        for (int j = 5; j >= 0; j--)
-        {
-            Console.Write(j);
-            Thread.Sleep(1000);
-            Console.Write("\b \b \b");
-        }
+        base.ShowCountDown(8);
         Console.Clear();
 
 
