@@ -1,4 +1,4 @@
-abstract class Goal
+class Goal
 {
     private string _shortName;
     private string _description;
@@ -21,5 +21,8 @@ abstract class Goal
     {
         return "";
     }
-    private abstract string GetStringRepresentation();
+    public virtual string GetStringRepresentation()
+    {
+        return "";
+    }
 }
