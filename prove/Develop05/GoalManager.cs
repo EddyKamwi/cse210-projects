@@ -5,6 +5,7 @@ class GoalManager
     private int _score = 0;
     public Dictionary<string, string> _DicToSave = new Dictionary<string, string>();
     public GoalManager() { }
+    public Goal goal;
     public void DisplayPoints()
     {
         string pointsMessage = $"You have {_score} points";
@@ -68,6 +69,7 @@ class GoalManager
     }
     public void SaveToFile(string filename)
     {
+        _DicToSave["Score"] = $"{this._score}";
 
         using (StreamWriter _file = new StreamWriter($"../../../{filename}"))
         {
@@ -91,6 +93,9 @@ class GoalManager
             string[] pair = line.Split(":");
             _DicToSave.Add(pair[0], pair[1]);
         }
+        string score = _DicToSave["Score"];
+        _score = int.Parse(score);
+        _DicToSave.Remove("Score");
 
     }
     public void RecordGoal(string _key)
@@ -104,12 +109,11 @@ class GoalManager
 
                 int i = int.Parse(property[3]) + 1;
 
-                property[3] = i.ToString();
                 //update record
-                _DicToSave[_key] = $"{property[0]},{property[1]},{property[2]},{property[3]},{property[4]},{property[5]}";
+                _DicToSave[_key] = $"{property[0]},{property[1]},{property[2]},{i},{property[4]},{property[5]},false";
 
 
-                if (int.Parse(property[4]) == int.Parse(property[3]))
+                if (int.Parse(property[4]) == i)
                 {
                     UpdateScore(int.Parse(property[5]));
                     _DicToSave[_key] = $"{property[0]},{property[1]},{property[2]},{property[3]},{property[4]},{property[5]},true";
@@ -125,21 +129,74 @@ class GoalManager
             {
                 string[] property = pair.Value.Split(",");
                 UpdateScore(int.Parse(property[2]));
-                _DicToSave[_key] = $"{property[0]}, {property[1]}, {property[2]}";
+                _DicToSave[_key] = $"{property[0]}, {property[1]}, {property[2]},false";
+            }
+
+        }
+    }
+    public void ListGoals()
+    {
+        int numbering = 1;
+        foreach (var pair in _DicToSave)
+        {
+
+            string[] property = pair.Value.Split(",");
+            //simple Goal
+            if (property.Count() == 4)
+            {
+                string symbol = Mark(bool.Parse(property[property.Count() - 1]));
+                print($"{numbering}. [{symbol}] {property[0]} ({property[1]})");
+                numbering++;
+            }
+            //Eternal Goal
+            else if (property.Count() == 3)
+            {
+                print($"{numbering}. [ ] {property[0]} ({property[1]})");
+                numbering++;
+            }
+            //checklist Goal
+            else if (property.Count() == 7)
+            {
+                string symbol = Mark(bool.Parse(property[property.Count() - 1]));
+                print($"{numbering}. [{symbol}] {property[0]} ({property[1]}) ----currently completed: {property[3]}/{property[4]}");
+                numbering++;
             }
 
         }
     }
     public string GetUserInfoToRecord()
     {
-        string ans = ""; int numbering = 1;
+        string returnValue = ""; int numbering = 1;
         foreach (var pair in _DicToSave)
         {
             string[] property = pair.Value.Split(",");
 
-            print($"{numbering}. {property[0].ToUpper()}");
+            //show message if not complete
 
-            numbering++;
+
+            if (pair.Key == "Eternal")
+            {
+
+                print($"{numbering}. {property[0].ToUpper()}");
+                numbering++;
+            }
+            else if (pair.Key == "Checklist")
+            {
+                if (!bool.Parse(property[6]))
+                {
+                    print($"{numbering}. {property[0].ToUpper()}");
+                    numbering++;
+                }
+            }
+            else if (pair.Key == "Simple")
+            {
+                if (!bool.Parse(property[3]))
+                {
+                    print($"{numbering}. {property[0].ToUpper()}");
+                    numbering++;
+                }
+            }
+
         }
         int ansInt = int.Parse(input("Which goal did you accomplish? "));
         int index = 1;
@@ -149,12 +206,23 @@ class GoalManager
 
             if (index == ansInt)
             {
-                ans = pair.Key;
+                returnValue = pair.Key;
             }
             index++;
         }
 
-        return ans;
+        return returnValue;
+    }
+    private string Mark(Boolean tf)
+    {
+        if (tf)
+        {
+            return "X";
+        }
+        else
+        {
+            return " ";
+        }
     }
     public void print(string str)
     {

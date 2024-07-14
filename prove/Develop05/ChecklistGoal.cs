@@ -25,7 +25,7 @@ class ChecklistGoal : Goal
     }
     public override string GetDetailsString()
     {
-        return $"{_shortName},{_description},{_points},{this._amountCompleted},{this._target},{this._bonus}";
+        return $"{_shortName},{_description},{_points},{this._amountCompleted},{this._target},{this._bonus},{this.IsComplete()}";
     }
     public int UpdateAmountCompleted()
     {

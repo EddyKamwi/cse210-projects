@@ -7,6 +7,6 @@ class EternalGoal : Goal
     }
     public override string GetDetailsString()
     {
-        return $"{_shortName},{_description},{_points}";
+        return $"{_shortName},{_description},{_points},{this.IsComplete}";
     }
 }

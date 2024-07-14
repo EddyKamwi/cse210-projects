@@ -26,7 +26,7 @@ class Program
                 {
 
                     List<string> para = gm.CreateGoal();
-                    Goal goal = new SimpleGoal(para[0],para[1],para[2]);
+                    Goal goal = new SimpleGoal(para[0], para[1], para[2]);
                     gm._DicToSave.Add("Simple", goal.GetDetailsString());
                 }
 
@@ -34,7 +34,7 @@ class Program
                 else if (int.Parse(ans) == 2)
                 {
                     List<string> para = gm.CreateGoal();
-                    Goal goal = new EternalGoal(para[0],para[1],para[2]);
+                    Goal goal = new EternalGoal(para[0], para[1], para[2]);
                     gm._DicToSave.Add("Eternal", goal.GetDetailsString());
                 }
 
@@ -42,7 +42,7 @@ class Program
                 else if (int.Parse(ans) == 3)
                 {
                     List<string> para = gm.createListGoal();
-                    Goal goal = new ChecklistGoal(para[0],para[1],para[2],int.Parse(para[3]),int.Parse(para[4]));
+                    Goal goal = new ChecklistGoal(para[0], para[1], para[2], int.Parse(para[3]), int.Parse(para[4]));
                     gm._DicToSave.Add("Checklist", goal.GetDetailsString());
                 }
             }
@@ -53,23 +53,7 @@ class Program
 
                 if (gm._DicToSave.Count != 0)
                 {
-                    int numbering = 1;
-                    foreach (var item in gm._DicToSave.Values)
-                    {
-                        string[] property = item.Split(",");
-                        if (property.Count() < 6)
-                        {
-                            
-                            gm.print($"{numbering}. {property[0]} ({property[1]})");
-                            numbering++;
-                        }
-                        else
-                        {
-                            gm.print($"{numbering}. {property[0]} ({property[1]}) ----currently completed: {property[3]}/{property[4]}");
-                            numbering++;
-                        }
-
-                    }
+                    gm.ListGoals();
                 }
 
             }
