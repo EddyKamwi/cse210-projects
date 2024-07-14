@@ -3,14 +3,12 @@ using System.Dynamic;
 class GoalManager
 {
     private int _score = 0;
-    public Dictionary<string, string> _DicToSave = new Dictionary<string, string>();
-    public GoalManager() { }
-    public Goal goal;
     public void DisplayPoints()
     {
         string pointsMessage = $"You have {_score} points";
         Console.WriteLine(pointsMessage);
     }
+    public Dictionary<string, string> _DicToSave = new Dictionary<string, string>();
     public void DisplayMainMenu()
     {
         string menu = "Menu Options:\n" +
