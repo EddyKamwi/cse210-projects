@@ -1,0 +1,3 @@
+Checklist:Prayer,Praying always,100,0,4,500
+Simple:Jogging,Get in shape,50
+Eternal:Read,Improve my knowledge,50

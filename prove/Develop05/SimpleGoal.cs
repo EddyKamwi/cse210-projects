@@ -1,11 +1,17 @@
 class SimpleGoal : Goal
 {
-    private int _amountCompleted;
-    private int _target;
-    private int _bonus;
+
     public SimpleGoal(string name, string description, string points) : base(name, description, points) { }
+    public override bool IsComplete()
+    {
+        return true;
+    }
     public override string GetStringRepresentation()
     {
-        return"";
+        return $"[X] {_shortName} ({_description})";
+    }
+    public override string GetDetailsString()
+    {
+        return $"{_shortName},{_description},{_points}";
     }
 }

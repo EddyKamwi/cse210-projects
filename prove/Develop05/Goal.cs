@@ -1,28 +1,27 @@
-class Goal
+abstract class Goal
 {
-    private string _shortName;
-    private string _description;
-    private string _points;
-    public Goal(string name,string description,string points)
+    protected string _shortName;
+    protected string _description;
+    protected string _points;
+    public Goal(string name, string description, string points)
     {
         _shortName = name;
         _description = description;
         _points = points;
     }
-    public void RecordEvent()
+    public void RecordEvent(Goal goal)
     {
-
+        Console.WriteLine($"{GetDetailsString()}, {goal.IsComplete()}");
     }
-    public bool IsComplete()
+    public virtual bool IsComplete()
     {
         return false;
     }
-    private string GetDetailsString()
+    public abstract string GetDetailsString();
+    public int GetPoints()
     {
-        return "";
+        return int.Parse(_points);
     }
-    public virtual string GetStringRepresentation()
-    {
-        return "";
-    }
+
+    public abstract string GetStringRepresentation();
 }
