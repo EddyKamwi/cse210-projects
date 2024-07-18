@@ -1,24 +1,27 @@
 class Swimming : Activity
 {
-	private int _numberOfLaps;
+	private int _laps;
 
 
-	public Swimming(int laps, double minutes, double distanceInKm) : base(minutes, distanceInKm)
+	public Swimming(int laps, double minutes) : base(minutes)
 	{
-		_numberOfLaps = laps;
+		_laps = laps;
 	}
 	public override double GetPace()
 	{
-		double pace = base._lengthInMinutes/base._distance;
+		double distance = this._laps * 50 / 1000;
+		double pace = base._lengthInMinutes / distance;
 		return pace;
 	}
 	public override double GetDistanceKm()
 	{
-		return (this._numberOfLaps * 50) / 1000;
+		double distance = this._laps * 50 / 1000;
+		return distance;
 	}
 	public override double GetSpeed()
 	{
-		double speed =  60 * (base._distance/base._lengthInMinutes);
+		double distance = this._laps * 50 / 1000;
+		double speed = 60 * (distance / base._lengthInMinutes);
 		return speed;
 	}
 

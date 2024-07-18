@@ -2,11 +2,10 @@ abstract class Activity
 {
 	protected string _date = DateTime.Now.ToShortDateString();
 	protected double _lengthInMinutes;
-	protected double _distance;
-	public Activity(double minutes, double distanceInKm)
+	
+	public Activity(double minutes)
 	{
 		_lengthInMinutes = minutes;
-		_distance = distanceInKm;
 	}
 	public abstract double GetDistanceKm();
 	
@@ -16,6 +15,6 @@ abstract class Activity
 
 	public string GetSummary()
 	{
-		return $"{this._date} {this}({this._lengthInMinutes}min): Distance {this._distance}Km, Speed {this.GetSpeed()}kph, Pace: {this.GetPace()} min per km";
+		return $"{this._date} {this}({this._lengthInMinutes}min): Distance {this.GetDistanceKm()}Km, Speed {this.GetSpeed()}kph, Pace: {this.GetPace()} min per km";
 	}
 }

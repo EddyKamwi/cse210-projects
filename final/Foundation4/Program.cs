@@ -6,8 +6,8 @@ class Program
 	{
 		List<Activity> activities = new List<Activity>()
 		{
-			new Cycling(45,45),
-			new Swimming(5,60,2),
+			new Cycling(35,20),
+			new Swimming(20,10),
 			new Running(25,2)
 		};
 		foreach (Activity activity in activities)

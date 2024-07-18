@@ -1,21 +1,21 @@
 class Cycling : Activity
 {
-	public Cycling(double minutes,double distanceInKm) : base(minutes,distanceInKm)
+	private double _speed;
+	public Cycling(double minutes, double speed) : base(minutes)
 	{
-		
+		_speed = speed;
 	}
 	public override double GetPace()
 	{
-		double pace = base._lengthInMinutes/base._distance;
+		double pace = 60/this._speed;
 		return pace;
 	}
 	public override double GetDistanceKm()
 	{
-		return _distance;
+		return this._speed/base._lengthInMinutes;
 	}
 	public override double GetSpeed()
 	{
-		double speed =  60 * (base._distance/base._lengthInMinutes);
-		return speed;
+		return _speed;
 	}
 }
